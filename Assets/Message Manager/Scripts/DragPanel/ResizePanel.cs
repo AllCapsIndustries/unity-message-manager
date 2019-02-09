@@ -6,8 +6,6 @@ public class ResizePanel : MonoBehaviour, IPointerDownHandler, IDragHandler, IEn
     public Vector2 maxSize;
     internal bool resizing;
 
-    //private ControlCanvasSerialization canvasSerialization;
-
     private RectTransform rectTransform;
     private Vector2 currentPointerPosition;
     private Vector2 previousPointerPosition;
@@ -15,14 +13,11 @@ public class ResizePanel : MonoBehaviour, IPointerDownHandler, IDragHandler, IEn
 
     void Awake () {
         rectTransform = transform.parent.GetComponent<RectTransform> ();
-        //canvasSerialization = GetComponentInParent<ControlCanvasSerialization> ();
     }
 
     public void OnPointerDown (PointerEventData data) {
         rectTransform.SetAsLastSibling ();
         RectTransformUtility.ScreenPointToLocalPointInRectangle (rectTransform, data.position, data.pressEventCamera, out previousPointerPosition);
-
-        //LockInput (true);
     }
 
     public void OnDrag (PointerEventData data) {
@@ -51,21 +46,6 @@ public class ResizePanel : MonoBehaviour, IPointerDownHandler, IDragHandler, IEn
         if (_debug)
             print ("ResizePanel: OnEndDrag: Running SavePanel()");
 
-        // if (canvasSerialization != null)
-        //     canvasSerialization.SaveCanvasPositions ();
-
-        //LockInput (false);
-
         resizing = false;
     }
-
-    // public void LockInput (bool v) {
-    //     if (!SimianNextLevelShit.activeShip)
-    //         return;
-
-    //     ILockInput[] locks = SimianNextLevelShit.activeShip.GetComponentsInChildren<ILockInput> ();
-
-    //     for (int i = 0; i < locks.Length; i++)
-    //         locks[i].LockInput (v);
-    // }
 }

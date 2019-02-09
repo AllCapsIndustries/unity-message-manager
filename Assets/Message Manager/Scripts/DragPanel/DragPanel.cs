@@ -2,7 +2,6 @@
 using UnityEngine.EventSystems;
 
 public class DragPanel : MonoBehaviour, IPointerDownHandler, IDragHandler, IEndDragHandler {
-    //private ControlCanvasSerialization canvasSerialization;
 
     private Vector2 pointerOffset;
     private RectTransform canvasRectTransform;
@@ -11,7 +10,7 @@ public class DragPanel : MonoBehaviour, IPointerDownHandler, IDragHandler, IEndD
 
     void Awake () {
         Canvas canvas = GetComponentInParent<Canvas> ();
-        //canvasSerialization = GetComponentInParent<ControlCanvasSerialization> ();
+        
         if (canvas != null) {
             canvasRectTransform = canvas.transform as RectTransform;
             panelRectTransform = transform.parent as RectTransform;
@@ -24,8 +23,6 @@ public class DragPanel : MonoBehaviour, IPointerDownHandler, IDragHandler, IEndD
 
         //So we don't have to press escape after every adjustment to UI
         EventSystem.current.SetSelectedGameObject (gameObject);
-
-        //LockInput (true);
     }
 
     public void OnDrag (PointerEventData data) {
@@ -58,22 +55,6 @@ public class DragPanel : MonoBehaviour, IPointerDownHandler, IDragHandler, IEndD
     }
 
     public void OnEndDrag (PointerEventData eventData) {
-        //print("DragPanel: OnEndDrag: Running SavePanel()");
-        // if (canvasSerialization != null)
-        //     canvasSerialization.SaveCanvasPositions ();
-
-        //LockInput (false);
-
         dragging = false;
     }
-
-    // public void LockInput (bool v) {
-    //     // if (!SimianNextLevelShit.activeShip)
-    //     //     return;
-
-    //     // ILockInput[] locks = SimianNextLevelShit.activeShip.GetComponentsInChildren<ILockInput> ();
-
-    //     for (int i = 0; i < locks.Length; i++)
-    //         locks[i].LockInput (v);
-    // }
 }
