@@ -523,7 +523,7 @@ GameObject:
   - component: {fileID: 804540352}
   - component: {fileID: 804540351}
   m_Layer: 0
-  m_Name: MessageTest
+  m_Name: MessageManagerTest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
